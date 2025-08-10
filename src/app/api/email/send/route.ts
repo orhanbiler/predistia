@@ -7,6 +7,7 @@ import { EODBar, Signal, MarketOpportunity, MarketEvent } from '@/types/core';
 import { getCommodityOutlook, generateStrategicInsights } from '@/lib/newsAggregator';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
@@ -245,17 +246,18 @@ export async function GET(req: NextRequest) {
       htmlBody: html 
     });
     
-    // Redirect back to dashboard with success message
-    return NextResponse.redirect(
-      new URL('/dashboard?email=sent', req.url),
-      { status: 303 }
-    );
+    // Return JSON response instead of redirect for API route
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Email sent successfully',
+      recipients: envRecipients
+    });
     
   } catch (e: any) {
     console.error('Email send error:', e);
-    return NextResponse.redirect(
-      new URL('/dashboard?email=error', req.url),
-      { status: 303 }
-    );
+    return NextResponse.json({ 
+      success: false, 
+      error: e.message || 'Failed to send email'
+    }, { status: 500 });
   }
 }

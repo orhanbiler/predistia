@@ -6,6 +6,7 @@ import { EODBar, Signal, MarketOpportunity, MarketEvent } from '@/types/core';
 import { getCommodityOutlook, generateStrategicInsights } from '@/lib/newsAggregator';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {

@@ -14,9 +14,20 @@ export default function EmailControls() {
     
     setSendingEmail(true);
     try {
-      window.location.href = '/api/email/send';
+      const res = await fetch('/api/email/send');
+      const data = await res.json();
+      
+      if (data.success) {
+        alert(`Email sent successfully to: ${data.recipients?.join(', ') || 'configured recipients'}`);
+        window.location.href = '/dashboard?email=sent';
+      } else {
+        alert(`Failed to send email: ${data.error || 'Unknown error'}`);
+        window.location.href = '/dashboard?email=error';
+      }
     } catch (error) {
       console.error('Error sending email:', error);
+      alert('Error sending email. Check console for details.');
+    } finally {
       setSendingEmail(false);
     }
   };
