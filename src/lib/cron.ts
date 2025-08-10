@@ -1,0 +1,14 @@
+import { NextRequest } from 'next/server';
+
+export function verifyCron(req: NextRequest) {
+  const expected = process.env.CRON_SECRET;
+  if (!expected) throw new Error('Missing CRON_SECRET');
+  const got = req.headers.get('x-cron-secret');
+  if (got !== expected) {
+    const err = new Error('Unauthorized');
+    // @ts-ignore
+    err.status = 401;
+    throw err;
+  }
+}
+
