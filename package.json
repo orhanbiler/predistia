@@ -13,7 +13,11 @@
     "backtest": "ts-node --transpile-only scripts/backtest.ts",
     "backfill": "ts-node --transpile-only scripts/backfillHistorical.ts",
     "test-opportunities": "ts-node --transpile-only scripts/testOpportunities.ts",
-    "test-global-news": "ts-node --transpile-only scripts/testGlobalNews.ts"
+    "test-global-news": "ts-node --transpile-only scripts/testGlobalNews.ts",
+    "vercel:login": "vercel login",
+    "vercel:link": "vercel link",
+    "vercel:env": "vercel env pull .env.local",
+    "vercel:deploy": "vercel --prod"
   },
   "dependencies": {
     "firebase": "^10.12.2",
