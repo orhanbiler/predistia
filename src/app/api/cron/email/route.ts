@@ -235,7 +235,7 @@ export async function POST(req: NextRequest) {
       
       ${newsSummary ? `
         <h3>📰 Market News Digest</h3>
-        <pre style="white-space:pre-wrap;line-height:1.3;background:#f9fafb;padding:12px;border-radius:6px">${newsSummary}</pre>
+        <div style="background:#f9fafb;padding:12px;border-radius:6px;font-family:inherit;line-height:1.5">${newsSummary.replace(/\n/g, '<br/>')}</div>
       ` : ''}
       
       <h3>📈 Historical Performance</h3>

@@ -44,7 +44,7 @@ export default function EmailControls() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-cron-secret': 'dev' // This will only work in dev
+          'x-cron-secret': '9f3c1a7e2d45b9c0e83f6a12d4c5b8e7a1f2c3d4e5f60718293a4b5c6d7e8f90'
         }
       });
       
